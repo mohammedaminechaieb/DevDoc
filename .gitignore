@@ -12,4 +12,8 @@ frontend/node_modules/
 frontend/dist/
 .DS_Store
 Thumbs.db
+full_corpus/
 raw_docs/
+corpus_agentic_ai/
+*.zip
+*_tmp/
