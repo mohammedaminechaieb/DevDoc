@@ -1,0 +1,14 @@
+﻿__pycache__/
+*.py[cod]
+.env
+venv/
+.venv/
+data/full_corpus_clean.jsonl
+*.jsonl
+*.index
+*.faiss
+neo4j_data/
+frontend/node_modules/
+frontend/dist/
+.DS_Store
+Thumbs.db

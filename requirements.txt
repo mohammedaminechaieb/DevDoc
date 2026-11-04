@@ -1,0 +1,12 @@
+﻿faiss-cpu
+sentence-transformers
+neo4j
+spacy
+groq
+fastapi
+uvicorn[standard]
+pydantic
+jsonlines
+tqdm
+pytest
+python-dotenv

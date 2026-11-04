@@ -1,0 +1,12 @@
+﻿[
+  {"id":1,"question":"What is LangGraph?","expected_framework":"langgraph"},
+  {"id":2,"question":"How does CrewAI define agents?","expected_framework":"crewai"},
+  {"id":3,"question":"What is the MCP protocol?","expected_framework":"mcp"},
+  {"id":4,"question":"How does AutoGen handle multi-agent communication?","expected_framework":"autogen"},
+  {"id":5,"question":"How does LangChain implement tool calling?","expected_framework":"langchain"},
+  {"id":6,"question":"What is function calling in OpenAI?","expected_framework":"openai"},
+  {"id":7,"question":"How does Anthropic implement tool use?","expected_framework":"anthropic"},
+  {"id":8,"question":"What is a transformer attention mechanism?","expected_framework":"foundational"},
+  {"id":9,"question":"What is the capital of Mars?","expected_framework":null},
+  {"id":10,"question":"What version of LangGraph supports memory?","expected_framework":"langgraph"}
+]
