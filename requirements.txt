@@ -1,12 +1,30 @@
-﻿faiss-cpu
-sentence-transformers
-neo4j
-spacy
-groq
-fastapi
-uvicorn[standard]
+# Core
+python-dotenv
 pydantic
 jsonlines
 tqdm
+numpy
+
+# Retrieval
+faiss-cpu
+sentence-transformers
+
+# Knowledge graph
+neo4j
+spacy
+
+# LLM + agents
+groq
+httpx
+langgraph
+
+# API
+fastapi
+uvicorn[standard]
+
+# Corpus builder (scripts/fetch_full_docs_v3.py)
+requests
+beautifulsoup4
+
+# Tests
 pytest
-python-dotenv

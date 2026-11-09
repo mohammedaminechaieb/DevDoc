@@ -1,12 +1,17 @@
-﻿[
-  {"id":1,"question":"What is LangGraph?","expected_framework":"langgraph"},
-  {"id":2,"question":"How does CrewAI define agents?","expected_framework":"crewai"},
-  {"id":3,"question":"What is the MCP protocol?","expected_framework":"mcp"},
-  {"id":4,"question":"How does AutoGen handle multi-agent communication?","expected_framework":"autogen"},
-  {"id":5,"question":"How does LangChain implement tool calling?","expected_framework":"langchain"},
-  {"id":6,"question":"What is function calling in OpenAI?","expected_framework":"openai"},
-  {"id":7,"question":"How does Anthropic implement tool use?","expected_framework":"anthropic"},
-  {"id":8,"question":"What is a transformer attention mechanism?","expected_framework":"foundational"},
-  {"id":9,"question":"What is the capital of Mars?","expected_framework":null},
-  {"id":10,"question":"What version of LangGraph supports memory?","expected_framework":"langgraph"}
+[
+  {"id": 1,  "category": "conceptual",   "expected_intent": "learn",     "expected_framework": null,        "question": "What is the difference between a classic LLM and an AI agent?"},
+  {"id": 2,  "category": "conceptual",   "expected_intent": "learn",     "expected_framework": null,        "question": "How does tool calling work?"},
+  {"id": 3,  "category": "conceptual",   "expected_intent": "learn",     "expected_framework": "mcp",       "question": "What is the Model Context Protocol (MCP)?"},
+  {"id": 4,  "category": "conceptual",   "expected_intent": "learn",     "expected_framework": "langgraph", "question": "How does memory work in a LangGraph agent?"},
+  {"id": 5,  "category": "comparison",   "expected_intent": "recommend", "expected_framework": null,        "question": "Compare CrewAI vs AutoGen for multi-agent collaboration."},
+  {"id": 6,  "category": "comparison",   "expected_intent": "recommend", "expected_framework": null,        "question": "Which framework do you recommend for a stateful workflow with human approval steps?"},
+  {"id": 7,  "category": "architecture", "expected_intent": "design",    "expected_framework": null,        "question": "I want several agents that search the web, analyse the results and write a report. How should I design the architecture?"},
+  {"id": 8,  "category": "architecture", "expected_intent": "design",    "expected_framework": null,        "question": "Design an architecture for a customer-support agent that uses a knowledge base and escalates to a human."},
+  {"id": 9,  "category": "code",         "expected_intent": "code",      "expected_framework": "langgraph", "question": "Give me a code example of a LangGraph StateGraph with two nodes and a conditional edge."},
+  {"id": 10, "category": "code",         "expected_intent": "code",      "expected_framework": "crewai",    "question": "I get an error when my CrewAI agent calls a custom tool. How do I fix it?"},
+  {"id": 11, "category": "workflow",     "expected_intent": "explore",   "expected_framework": "langgraph", "question": "Walk me through the workflow of a LangGraph agent step by step."},
+  {"id": 12, "category": "evaluation",   "expected_intent": "evaluate",  "expected_framework": null,        "question": "How can I evaluate the reliability of a multi-agent system and limit hallucinations?"},
+  {"id": 13, "category": "provider",     "expected_intent": "learn",     "expected_framework": "anthropic", "question": "How does Anthropic implement tool use?"},
+  {"id": 14, "category": "provider",     "expected_intent": "learn",     "expected_framework": "openai",    "question": "What is function calling in the OpenAI API?"},
+  {"id": 15, "category": "out_of_scope", "expected_intent": "learn",     "expected_framework": null,        "question": "What is the capital of Mars?"}
 ]

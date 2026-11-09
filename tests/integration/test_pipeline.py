@@ -1,13 +1,11 @@
-﻿# tests/integration/test_pipeline.py
-# Everyone merges here
+# tests/integration/test_pipeline.py
+# Everyone merges here: full LangGraph pipeline end to end.
 
-import pytest
 
 def test_full_pipeline():
-    from retrieval.hybrid_retriever import retrieve
-    from generation.answer_generator import generate_answer
+    from agents.orchestrator import run_copilot
 
-    chunks = retrieve("What is LangGraph?", k=3)
-    result = generate_answer("What is LangGraph?", chunks)
-    assert isinstance(result["answer"], str)
-    assert len(result["answer"]) > 0
+    result = run_copilot("What is LangGraph?", top_k=3)
+    assert result["intent"] == "learn"
+    assert isinstance(result["answer"], str) and result["answer"]
+    assert result["sources"]

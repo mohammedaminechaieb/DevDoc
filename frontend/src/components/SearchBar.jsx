@@ -1,4 +1,4 @@
-﻿// frontend/src/components/SearchBar.jsx - Aya
+// frontend/src/components/SearchBar.jsx - Aya
 import React, { useState } from 'react'
 
 export default function SearchBar({ onSearch, disabled }) {
@@ -10,9 +10,9 @@ export default function SearchBar({ onSearch, disabled }) {
         value={input}
         onChange={e => setInput(e.target.value)}
         onKeyDown={e => e.key === 'Enter' && !disabled && onSearch(input)}
-        placeholder="Ask about LangGraph, CrewAI, MCP..."
+        placeholder="Ask about agents, LangGraph, CrewAI, MCP, or describe your project..."
       />
-      <button onClick={() => onSearch(input)} disabled={disabled}>Search</button>
+      <button onClick={() => onSearch(input)} disabled={disabled}>Ask</button>
     </div>
   )
 }

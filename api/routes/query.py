@@ -1,18 +1,33 @@
-﻿# api/routes/query.py
+# api/routes/query.py
 # Cross-module owner: Mariem
 #
 # Mariem writes this because she owns generation and knows the
 # exact function signatures that need to be called here.
 
-from fastapi import APIRouter
+from fastapi import APIRouter, HTTPException
+
+from agents.orchestrator import run_copilot
 from api.schemas.request import QueryRequest
 from api.schemas.response import QueryResponse
 
 router = APIRouter()
 
+
 @router.post("/query", response_model=QueryResponse)
-async def query_endpoint(body: QueryRequest):
-    # TODO: call retrieval.hybrid_retriever.retrieve(body.question, body.top_k)
-    # TODO: call generation.answer_generator.generate_answer(...)
-    # return QueryResponse(answer=..., sources=..., query=body.question)
-    raise NotImplementedError
+def query_endpoint(body: QueryRequest):
+    try:
+        result = run_copilot(
+            body.question,
+            top_k=body.top_k,
+            use_graph=body.use_graph,
+            history=[m.model_dump() for m in body.history],
+        )
+    except NotImplementedError as e:
+        raise HTTPException(status_code=501, detail=f"Pipeline not implemented yet: {e}")
+    return QueryResponse(
+        query=body.question,
+        intent=result.get("intent"),
+        answer=result.get("answer", ""),
+        sources=result.get("sources", []),
+        graph=result.get("graph"),
+    )

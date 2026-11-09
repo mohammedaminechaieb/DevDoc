@@ -1,4 +1,4 @@
-﻿# generation/answer_generator.py
+# generation/answer_generator.py
 # Primary owner: Mariem
 
 from generation.reranker import rerank

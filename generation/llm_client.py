@@ -1,13 +1,14 @@
-﻿# generation/llm_client.py
+# generation/llm_client.py
 # Primary owner: Mariem
 
-from config.settings import LLM_PROVIDER, LLM_MODEL
+from config.settings import GROQ_API_KEY, LLM_MODEL, LLM_PROVIDER, OLLAMA_URL
 
-def call_llm(prompt: str) -> str:
+
+def call_llm(prompt: str, system: str | None = None) -> str:
     if LLM_PROVIDER == "groq":
-        # TODO: call Groq API, return response text
+        # TODO: groq.Groq(api_key=GROQ_API_KEY).chat.completions.create(model=LLM_MODEL, ...)
         raise NotImplementedError
     elif LLM_PROVIDER == "ollama":
-        # TODO: call local Ollama endpoint
+        # TODO: POST f"{OLLAMA_URL}/api/chat" with model=LLM_MODEL (httpx)
         raise NotImplementedError
     raise ValueError(f"Unknown LLM provider: {LLM_PROVIDER}")

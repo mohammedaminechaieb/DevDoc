@@ -1,5 +1,9 @@
-﻿[project]
-name = "devdoc-ai"
+[project]
+name = "agentic-ai-copilot"
 version = "0.1.0"
-description = "Hybrid GraphRAG assistant for technical documentation"
+description = "Agentic AI Copilot - LangGraph multi-agent assistant powered by Hybrid GraphRAG (FAISS + Neo4j)"
 requires-python = ">=3.10"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]

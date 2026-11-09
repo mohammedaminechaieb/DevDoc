@@ -1,4 +1,4 @@
-﻿// frontend/src/components/SourcesList.jsx - Aya
+// frontend/src/components/SourcesList.jsx - Aya
 import React from 'react'
 
 export default function SourcesList({ sources }) {

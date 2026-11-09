@@ -1,1 +1,1 @@
-﻿# api/schemas/__init__.py
+# api/schemas/__init__.py

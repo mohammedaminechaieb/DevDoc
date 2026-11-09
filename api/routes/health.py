@@ -1,4 +1,4 @@
-﻿# api/routes/health.py
+# api/routes/health.py
 # Cross-module owner: Aya
 #
 # Aya writes this because the frontend polls /health to check
@@ -8,6 +8,7 @@ from fastapi import APIRouter
 
 router = APIRouter()
 
+
 @router.get("/health")
 async def health():
-    return {"status": "ok", "service": "devdoc-ai"}
+    return {"status": "ok", "service": "agentic-ai-copilot"}

@@ -1,18 +1,32 @@
-﻿__pycache__/
+# Python
+__pycache__/
 *.py[cod]
-.env
+.pytest_cache/
 venv/
 .venv/
-data/full_corpus_clean.jsonl
-*.jsonl
+
+# Secrets
+.env
+config/.env
+
+# Generated artefacts (rebuild with scripts/run_pipeline.*)
+data/
 *.index
 *.faiss
-neo4j_data/
-frontend/node_modules/
-frontend/dist/
-.DS_Store
-Thumbs.db
+
+# Raw downloads used to build the corpus (not committed)
 raw_docs/
 corpus_agentic_ai/
 *.zip
 *_tmp/
+
+# Neo4j
+neo4j_data/
+
+# Frontend
+frontend/node_modules/
+frontend/dist/
+
+# OS
+.DS_Store
+Thumbs.db

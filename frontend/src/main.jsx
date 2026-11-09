@@ -1,4 +1,4 @@
-﻿// frontend/src/main.jsx - Aya
+// frontend/src/main.jsx - Aya
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App'

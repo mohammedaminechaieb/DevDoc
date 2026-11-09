@@ -1,15 +1,16 @@
-﻿# api/main.py
+# api/main.py
 # Primary owner: Amine
 # Run: uvicorn api.main:app --reload
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from api.routes import query, health
+
+from api.routes import health, query
 
 app = FastAPI(
-    title="DevDoc AI",
-    description="Hybrid GraphRAG assistant for technical documentation",
-    version="0.1.0"
+    title="Agentic AI Copilot",
+    description="LangGraph multi-agent assistant powered by Hybrid GraphRAG (FAISS + Neo4j)",
+    version="0.1.0",
 )
 
 app.add_middleware(

@@ -8,9 +8,9 @@ Builds full_corpus/full_corpus_clean.jsonl from:
 
 Usage
 -----
-  python fetch_full_docs_v3.py                    # fetch + chunk everything
-  python fetch_full_docs_v3.py --chunk-only       # skip HTTP, re-chunk raw_docs only
-  python fetch_full_docs_v3.py --framework X      # one framework only (incremental)
+  python scripts/fetch_full_docs_v3.py                    # fetch + chunk everything
+  python scripts/fetch_full_docs_v3.py --chunk-only       # skip HTTP, re-chunk raw_docs only
+  python scripts/fetch_full_docs_v3.py --framework X      # one framework only (incremental)
 
 Frameworks: langgraph, langchain, crewai, autogen, mcp, openai, anthropic, foundational
 """

@@ -1,4 +1,4 @@
-﻿// frontend/src/components/AnswerCard.jsx - Aya
+// frontend/src/components/AnswerCard.jsx - Aya
 import React from 'react'
 
 export default function AnswerCard({ answer }) {

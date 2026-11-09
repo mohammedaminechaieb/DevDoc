@@ -1,4 +1,4 @@
-﻿// frontend/src/App.jsx - Aya
+// frontend/src/App.jsx - Aya
 import React from 'react'
 import Home from './pages/Home'
 

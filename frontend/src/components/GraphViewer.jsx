@@ -1,12 +1,13 @@
-﻿// frontend/src/components/GraphViewer.jsx - Aya
-// TODO: integrate Neo4j Bloom or react-force-graph
+// frontend/src/components/GraphViewer.jsx - Aya
+// TODO: render data.nodes / data.edges with an interactive graph library (e.g. react-force-graph)
 import React from 'react'
 
 export default function GraphViewer({ data }) {
+  if (!data || !data.nodes || data.nodes.length === 0) return null
   return (
     <div>
       <h3>Knowledge Graph</h3>
-      <p>Graph visualization - coming soon.</p>
+      <p>{data.nodes.length} concepts, {data.edges.length} relations - visualization coming soon.</p>
     </div>
   )
 }
