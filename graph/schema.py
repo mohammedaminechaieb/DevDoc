@@ -1,5 +1,5 @@
 # graph/schema.py
-# Primary owner: Oussema
+# Owner: Oussema
 #
 # Knowledge-graph schema of the Agentic AI Copilot (NLP.pdf section 5).
 # Every relationship keeps its provenance (chunk_id, url) so answers can cite it.

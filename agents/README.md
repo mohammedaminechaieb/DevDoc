@@ -1,27 +1,28 @@
 # agents/ - LangGraph Orchestrator
-Owner: _to assign_ | Branch: feat/agents
+Shared module: each file belongs to the person who owns that part of the pipeline.
+Work on your own branch (see the root README).
 
 Implements the agentic architecture of NLP.pdf section 6.
 
 ## Flow
-```
+~~~
 START -> intent_analyzer -> knowledge_retriever -> route by intent -> specialist -> reviewer -> END
-```
+~~~
 
-| File | Role (NLP.pdf) | Intents |
-|---|---|---|
-| intent_analyzer.py | Intent Analyzer | sets `intent`, `entities` |
-| knowledge_retriever.py | Knowledge Retrieval (FAISS + Neo4j) | all |
-| responder.py | grounded RAG answer (generation/) | learn, explore |
-| architecture_advisor.py | Architecture Advisor | recommend, design |
-| code_assistant.py | Code Assistant | code |
-| evaluation_assistant.py | Evaluation Assistant (`run` + `review`) | evaluate (+ reviews all) |
-| orchestrator.py | builds the StateGraph, `run_copilot()` | - |
-| state.py | `CopilotState`, `INTENTS` | - |
+| File | Role (NLP.pdf) | Intents | Owner |
+|---|---|---|---|
+| orchestrator.py | builds the StateGraph, `run_copilot()` | - | Amine |
+| state.py | `CopilotState`, `INTENTS` | - | Amine |
+| intent_analyzer.py | Intent Analyzer | sets `intent`, `entities` | Amine |
+| knowledge_retriever.py | Knowledge Retrieval (FAISS + Neo4j) | all | Ghassen |
+| responder.py | grounded RAG answer (generation/) | learn, explore | Mariem |
+| architecture_advisor.py | Architecture Advisor | recommend, design | Mariem |
+| code_assistant.py | Code Assistant | code | Mariem |
+| evaluation_assistant.py | Evaluation Assistant (`run` + `review`) | evaluate (+ reviews all) | Aya |
 
 ## Use
-```python
+~~~python
 from agents.orchestrator import run_copilot
 result = run_copilot("Which framework should I use for a multi-agent research system?")
 print(result["intent"], result["answer"])
-```
+~~~

@@ -1,8 +1,5 @@
 # api/routes/query.py
-# Cross-module owner: Mariem
-#
-# Mariem writes this because she owns generation and knows the
-# exact function signatures that need to be called here.
+# Owner: Amine
 
 from fastapi import APIRouter, HTTPException
 

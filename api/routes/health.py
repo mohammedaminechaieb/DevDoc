@@ -1,8 +1,5 @@
 # api/routes/health.py
-# Cross-module owner: Aya
-#
-# Aya writes this because the frontend polls /health to check
-# if the backend is reachable before enabling the search button.
+# Owner: Aya
 
 from fastapi import APIRouter
 

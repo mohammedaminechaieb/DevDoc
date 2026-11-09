@@ -1,4 +1,5 @@
-// frontend/src/pages/Home.jsx - Aya
+// frontend/src/pages/Home.jsx
+// Owner: Aya
 import React, { useState } from 'react'
 import SearchBar from '../components/SearchBar'
 import AnswerCard from '../components/AnswerCard'
@@ -21,7 +22,7 @@ export default function Home() {
   const [loading, setLoading] = useState(false)
   const [healthy, setHealthy] = useState(null)
 
-  // Poll /health before enabling search (Aya owns /health too)
+  // Poll /health before enabling search (served by api/routes/health.py)
   React.useEffect(() => {
     axios.get('/health')
       .then(() => setHealthy(true))

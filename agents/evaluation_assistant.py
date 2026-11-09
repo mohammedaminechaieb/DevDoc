@@ -1,4 +1,5 @@
 # agents/evaluation_assistant.py
+# Owner: Aya
 # Role: Evaluation Assistant
 #   run()    - answers feature F questions (evaluation, reliability, hallucinations)
 #   review() - checks every answer before it is returned (grounding, citations)

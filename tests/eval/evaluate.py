@@ -1,4 +1,5 @@
-# tests/eval/evaluate.py - Cross-module owner: Aya
+# tests/eval/evaluate.py
+# Owner: Aya
 #
 # Runs every question of questions.json through the full copilot and reports
 # intent accuracy and framework hit rate per category.

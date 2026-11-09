@@ -1,4 +1,5 @@
-// frontend/vite.config.js - Aya
+// frontend/vite.config.js
+// Owner: Aya
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 

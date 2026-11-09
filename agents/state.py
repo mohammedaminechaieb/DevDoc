@@ -1,4 +1,5 @@
 # agents/state.py
+# Owner: Amine
 # Shared state passed between the LangGraph nodes.
 
 from typing import TypedDict

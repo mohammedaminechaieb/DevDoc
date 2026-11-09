@@ -43,12 +43,13 @@ Nodes: Concept, Framework, Component, Technology, Technique, Chunk.
 Relations: IMPLEMENTS, USES, HAS, DELEGATES_TO, CONTAINS, CONNECTS, SUPPORTS,
 ALTERNATIVE_TO, MENTIONED_IN (each with its source chunk_id / url).
 
-## Cross-module map
-| Person  | Primary | Also writes |
-|---------|---------|-------------|
-| Oussema | graph/ | retrieval/graph_retriever.py |
-| Ghassen | retrieval/ | graph/queries.py |
-| Mariem  | generation/ | api/routes/query.py |
-| Amine   | api/ | generation/reranker.py |
-| Aya     | frontend/ | api/routes/health.py, tests/eval/ |
-| _to assign_ | agents/ | - |
+## Ownership
+| Person  | Area | Branch |
+|---------|------|--------|
+| Oussema | graph/, retrieval/graph_retriever.py | feat/graph |
+| Ghassen | retrieval/ (vector + hybrid), generation/reranker.py, agents/knowledge_retriever.py | feat/retrieval |
+| Mariem  | generation/, agents/responder.py, agents/architecture_advisor.py, agents/code_assistant.py | feat/generation |
+| Amine   | api/, config/, agents/orchestrator.py, agents/state.py, agents/intent_analyzer.py, Docker | feat/api |
+| Aya     | frontend/, api/routes/health.py, agents/evaluation_assistant.py, tests/eval/, tests/integration/ | feat/frontend |
+
+Full file list: see the root [README](../README.md#team-and-ownership).

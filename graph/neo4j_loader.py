@@ -1,5 +1,5 @@
 # graph/neo4j_loader.py
-# Primary owner: Oussema
+# Owner: Oussema
 #
 # Reads CORPUS_PATH (full_corpus/full_corpus_clean.jsonl) -> extracts -> loads into Neo4j
 # Run: python -m graph.neo4j_loader

@@ -1,5 +1,5 @@
 # api/main.py
-# Primary owner: Amine
+# Owner: Amine
 # Run: uvicorn api.main:app --reload
 
 from fastapi import FastAPI

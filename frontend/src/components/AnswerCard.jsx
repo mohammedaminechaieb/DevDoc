@@ -1,4 +1,5 @@
-// frontend/src/components/AnswerCard.jsx - Aya
+// frontend/src/components/AnswerCard.jsx
+// Owner: Aya
 import React from 'react'
 
 export default function AnswerCard({ answer }) {

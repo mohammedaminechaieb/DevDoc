@@ -1,5 +1,5 @@
 # retrieval/faiss_retriever.py
-# Primary owner: Ghassen
+# Owner: Ghassen
 
 from retrieval.embedder import embed
 from retrieval.faiss_indexer import load_index

@@ -1,5 +1,5 @@
 # api/schemas/request.py
-# Primary owner: Amine
+# Owner: Amine
 
 from pydantic import BaseModel
 

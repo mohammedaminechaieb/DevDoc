@@ -1,5 +1,5 @@
 # generation/prompt_builder.py
-# Primary owner: Mariem
+# Owner: Mariem
 
 SYSTEM_PROMPT = (
     "You are Agentic AI Copilot, an expert assistant that helps developers learn, design "

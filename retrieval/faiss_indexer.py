@@ -1,5 +1,5 @@
 # retrieval/faiss_indexer.py
-# Primary owner: Ghassen
+# Owner: Ghassen
 #
 # Reads CORPUS_PATH, embeds every chunk, builds a FAISS index and saves it to FAISS_INDEX.
 # Also writes FAISS_META (one chunk per line, same order as the index) to map ids -> chunks.

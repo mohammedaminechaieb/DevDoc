@@ -1,8 +1,5 @@
 # retrieval/graph_retriever.py
-# Cross-module owner: Oussema
-#
-# Oussema writes this because he built the graph and knows
-# exactly which Cypher patterns to use here.
+# Owner: Oussema
 
 from graph.queries import query_entity_chunks, query_related_entities
 

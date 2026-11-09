@@ -1,5 +1,5 @@
 # graph/queries.py
-# Cross-module owner: Ghassen
+# Owner: Oussema
 #
 # Cypher helpers used by retrieval/graph_retriever.py and agents/knowledge_retriever.py
 

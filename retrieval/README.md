@@ -1,7 +1,7 @@
 # retrieval/ - Hybrid Retrieval
-Primary owner: Ghassen | Branch: feat/retrieval
-Cross-module contribution here: Oussema (graph_retriever.py)
-Ghassen contributes to: graph/queries.py
+Owner: Ghassen | Branch: feat/retrieval
+Other file here: graph_retriever.py (Oussema)
+Ghassen also owns: generation/reranker.py, agents/knowledge_retriever.py
 
 ## Pipeline
 1. embedder.py - sentence-transformers
@@ -13,6 +13,6 @@ Ghassen contributes to: graph/queries.py
 Chunk format returned by every retriever: `{chunk_id, text, url, framework, score}`
 
 ## Run
-```
+~~~
 python -m retrieval.faiss_indexer
-```
+~~~

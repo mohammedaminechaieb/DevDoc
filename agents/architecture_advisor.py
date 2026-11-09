@@ -1,4 +1,5 @@
 # agents/architecture_advisor.py
+# Owner: Mariem
 # Role: Architecture Advisor - features B (framework recommendation) and C (architecture designer).
 
 from agents.state import CopilotState

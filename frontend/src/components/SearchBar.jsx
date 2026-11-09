@@ -1,4 +1,5 @@
-// frontend/src/components/SearchBar.jsx - Aya
+// frontend/src/components/SearchBar.jsx
+// Owner: Aya
 import React, { useState } from 'react'
 
 export default function SearchBar({ onSearch, disabled }) {

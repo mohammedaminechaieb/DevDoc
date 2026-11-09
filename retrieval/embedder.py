@@ -1,5 +1,5 @@
 # retrieval/embedder.py
-# Primary owner: Ghassen
+# Owner: Ghassen
 
 from config.settings import EMBED_MODEL
 

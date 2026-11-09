@@ -5,7 +5,7 @@
 {"status": "ok", "service": "agentic-ai-copilot"}
 ```
 
-## POST /api/query  (owner: Mariem)
+## POST /api/query  (owner: Amine)
 Request:
 ```json
 {

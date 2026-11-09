@@ -1,8 +1,5 @@
 # generation/reranker.py
-# Cross-module owner: Amine
-#
-# Amine writes this because he owns the API and needs to know
-# exactly what score fields come out before wiring the route.
+# Owner: Ghassen
 
 
 def rerank(query: str, chunks: list[dict]) -> list[dict]:

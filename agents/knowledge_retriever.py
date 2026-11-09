@@ -1,4 +1,5 @@
 # agents/knowledge_retriever.py
+# Owner: Ghassen
 # Role: Knowledge Retrieval - queries the docs through FAISS + the Neo4j graph.
 
 from agents.state import CopilotState

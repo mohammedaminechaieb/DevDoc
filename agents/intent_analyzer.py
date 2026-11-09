@@ -1,4 +1,5 @@
 # agents/intent_analyzer.py
+# Owner: Amine
 # Role: Intent Analyzer - understands what the user needs.
 
 from agents.state import INTENTS, CopilotState

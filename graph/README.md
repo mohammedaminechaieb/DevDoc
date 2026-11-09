@@ -1,7 +1,6 @@
 # graph/ - Knowledge Graph
-Primary owner: Oussema | Branch: feat/graph
-Cross-module contribution here: Ghassen (queries.py)
-Oussema contributes to: retrieval/graph_retriever.py
+Owner: Oussema | Branch: feat/graph
+Oussema also owns: retrieval/graph_retriever.py
 
 ## Schema (NLP.pdf section 5) - see schema.py
 - Nodes: Concept, Framework, Component, Technology, Technique, Chunk
@@ -14,10 +13,10 @@ Oussema contributes to: retrieval/graph_retriever.py
 2. entity_extractor.py - keyword/alias matching (+ spaCy) per chunk
 3. relation_extractor.py - relations between entities
 4. neo4j_loader.py - push chunks, entities and relations to Neo4j
-5. queries.py (Ghassen) - Cypher helpers used by retrieval and agents
+5. queries.py - Cypher helpers used by retrieval/graph_retriever.py and agents
 
 ## Run
-```
+~~~
 docker compose up neo4j -d
 python -m graph.neo4j_loader
-```
+~~~

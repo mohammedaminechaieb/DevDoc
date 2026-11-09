@@ -1,10 +1,10 @@
 # generation/ - Answer Generation
-Primary owner: Mariem | Branch: feat/generation
-Cross-module contribution here: Amine (reranker.py)
-Mariem contributes to: api/routes/query.py
+Owner: Mariem | Branch: feat/generation
+Other file here: reranker.py (Ghassen)
+Mariem also owns: agents/responder.py, agents/architecture_advisor.py, agents/code_assistant.py
 
 ## Pipeline
-1. reranker.py (Amine) - re-score chunks
+1. reranker.py (Ghassen) - re-score chunks
 2. prompt_builder.py - format context + agent instructions + question
 3. llm_client.py - Groq / Ollama
 4. answer_generator.py - orchestrates all three

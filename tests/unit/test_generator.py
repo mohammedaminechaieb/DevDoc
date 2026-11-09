@@ -1,4 +1,5 @@
-# tests/unit/test_generator.py - Owner: Mariem
+# tests/unit/test_generator.py
+# Owner: Mariem
 from generation.answer_generator import generate_answer
 
 CHUNKS = [{

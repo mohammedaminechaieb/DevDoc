@@ -47,15 +47,20 @@ docs/          architecture, setup, API reference
 ```
 
 ## Team and ownership
-| Person  | Primary module | Branch          | Also contributes to                          |
-|---------|----------------|-----------------|----------------------------------------------|
-| Oussema | graph/         | feat/graph      | retrieval/graph_retriever.py                 |
-| Ghassen | retrieval/     | feat/retrieval  | graph/queries.py                             |
-| Mariem  | generation/    | feat/generation | api/routes/query.py                          |
-| Amine   | api/           | feat/api        | generation/reranker.py                       |
-| Aya     | frontend/      | feat/frontend   | api/routes/health.py + tests/eval/           |
-| _to assign_ | agents/    | feat/agents     | -                                            |
+Each person works on their own branch and merges into `main` through a pull request.
 
+| Person | Area | Branch | Files |
+|---|---|---|---|
+| Oussema | Knowledge graph (Neo4j) | feat/graph | `graph/*`, `retrieval/graph_retriever.py`, `tests/unit/test_extractor.py`, `notebooks/01_graph_exploration.ipynb` |
+| Ghassen | Vector + hybrid retrieval | feat/retrieval | `retrieval/embedder.py`, `retrieval/faiss_indexer.py`, `retrieval/faiss_retriever.py`, `retrieval/hybrid_retriever.py`, `generation/reranker.py`, `agents/knowledge_retriever.py`, `tests/unit/test_retriever.py`, `notebooks/02_retrieval_experiments.ipynb` |
+| Mariem | Generation + specialist agents | feat/generation | `generation/prompt_builder.py`, `generation/llm_client.py`, `generation/answer_generator.py`, `agents/responder.py`, `agents/architecture_advisor.py`, `agents/code_assistant.py`, `tests/unit/test_generator.py`, `notebooks/03_generation_tests.ipynb` |
+| Amine | Orchestration + API | feat/api | `agents/orchestrator.py`, `agents/state.py`, `agents/intent_analyzer.py`, `api/*` (except `routes/health.py`), `config/`, `Dockerfile`, `docker-compose.yml`, `tests/unit/test_agents.py`, `tests/unit/test_api.py` |
+| Aya | Frontend + evaluation | feat/frontend | `frontend/*`, `api/routes/health.py`, `agents/evaluation_assistant.py`, `tests/eval/*`, `tests/integration/test_pipeline.py`, `notebooks/04_evaluation.ipynb` |
+
+Agent roles of NLP.pdf: Intent Analyzer + orchestrator -> Amine, Knowledge Retrieval -> Ghassen,
+Architecture Advisor + Code Assistant -> Mariem, Evaluation Assistant -> Aya.
+
+Shared (change through a PR everyone reviews): `docs/`, `scripts/`, `requirements.txt`, `full_corpus/`, `README.md`.
 ## Quick start
 See [docs/setup.md](docs/setup.md). Architecture: [docs/architecture.md](docs/architecture.md).
 API: [docs/api_reference.md](docs/api_reference.md).

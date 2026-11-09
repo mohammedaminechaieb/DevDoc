@@ -1,4 +1,5 @@
 # config/settings.py - shared by all modules
+# Owner: Amine
 import os
 from pathlib import Path
 
