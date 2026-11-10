@@ -1,6 +1,6 @@
 # api/ - FastAPI Backend
 Owner: Amine | Branch: feat/api
-Other file here: routes/health.py (Aya)
+Other file here: routes/health.py (Oussema)
 Amine also owns: agents/orchestrator.py, agents/state.py, agents/intent_analyzer.py,
 config/, Dockerfile, docker-compose.yml
 
@@ -10,7 +10,7 @@ config/, Dockerfile, docker-compose.yml
 ## Endpoints
 | Method | Path        | Owner |
 |--------|-------------|-------|
-| GET    | /health     | Aya   |
+| GET    | /health     | Oussema   |
 | POST   | /api/query  | Amine |
 
 Full request/response format: [docs/api_reference.md](../docs/api_reference.md)

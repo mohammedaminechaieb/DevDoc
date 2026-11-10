@@ -1,5 +1,5 @@
 // frontend/src/pages/Home.jsx
-// Owner: Aya
+// Owner: Oussema
 import React, { useState } from 'react'
 import SearchBar from '../components/SearchBar'
 import AnswerCard from '../components/AnswerCard'

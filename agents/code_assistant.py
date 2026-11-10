@@ -1,5 +1,5 @@
 # agents/code_assistant.py
-# Owner: Mariem
+# Owner: Ghassen
 # Role: Code Assistant - feature D (code examples, project structure, debugging).
 
 from agents.state import CopilotState

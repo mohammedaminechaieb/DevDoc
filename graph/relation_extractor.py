@@ -1,5 +1,5 @@
 # graph/relation_extractor.py
-# Owner: Oussema
+# Owner: Aya
 #
 # Input:  chunk dict + entities list from extract_entities()
 # Output: list[{source, target, relation, chunk_id, url, framework, version, confidence}]

@@ -1,6 +1,6 @@
 # API Reference
 
-## GET /health  (owner: Aya)
+## GET /health  (owner: Oussema)
 ```json
 {"status": "ok", "service": "agentic-ai-copilot"}
 ```

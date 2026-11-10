@@ -1,5 +1,5 @@
 # agents/responder.py
-# Owner: Mariem
+# Owner: Ghassen
 # Answers learning (A) and workflow-explorer (E) questions with the grounded RAG answer.
 
 from agents.state import CopilotState

@@ -1,5 +1,5 @@
 // frontend/src/App.jsx
-// Owner: Aya
+// Owner: Oussema
 import React from 'react'
 import Home from './pages/Home'
 

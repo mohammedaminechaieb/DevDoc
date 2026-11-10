@@ -1,5 +1,5 @@
 # tests/eval/evaluate.py
-# Owner: Aya
+# Owner: Oussema
 #
 # Runs every question of questions.json through the full copilot and reports
 # intent accuracy and framework hit rate per category.

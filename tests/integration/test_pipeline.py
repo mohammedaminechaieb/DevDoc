@@ -1,5 +1,5 @@
 # tests/integration/test_pipeline.py
-# Owner: Aya
+# Owner: Oussema
 # Everyone merges here: full LangGraph pipeline end to end.
 
 

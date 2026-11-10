@@ -1,5 +1,5 @@
 # tests/unit/test_retriever.py
-# Owner: Ghassen
+# Owner: Mariem
 from retrieval.hybrid_retriever import retrieve
 
 

@@ -1,5 +1,5 @@
 // frontend/vite.config.js
-// Owner: Aya
+// Owner: Oussema
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 

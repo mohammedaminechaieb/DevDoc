@@ -1,5 +1,5 @@
 // frontend/src/components/SearchBar.jsx
-// Owner: Aya
+// Owner: Oussema
 import React, { useState } from 'react'
 
 export default function SearchBar({ onSearch, disabled }) {

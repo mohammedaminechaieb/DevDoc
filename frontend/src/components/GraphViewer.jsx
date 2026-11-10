@@ -1,5 +1,5 @@
 // frontend/src/components/GraphViewer.jsx
-// Owner: Aya
+// Owner: Oussema
 // TODO: render data.nodes / data.edges with an interactive graph library (e.g. react-force-graph)
 import React from 'react'
 

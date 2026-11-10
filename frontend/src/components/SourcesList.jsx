@@ -1,5 +1,5 @@
 // frontend/src/components/SourcesList.jsx
-// Owner: Aya
+// Owner: Oussema
 import React from 'react'
 
 export default function SourcesList({ sources }) {

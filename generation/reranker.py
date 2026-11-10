@@ -1,5 +1,5 @@
 # generation/reranker.py
-# Owner: Ghassen
+# Owner: Mariem
 
 
 def rerank(query: str, chunks: list[dict]) -> list[dict]:

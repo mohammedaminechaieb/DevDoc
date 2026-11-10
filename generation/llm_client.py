@@ -1,5 +1,5 @@
 # generation/llm_client.py
-# Owner: Mariem
+# Owner: Ghassen
 
 from config.settings import GROQ_API_KEY, LLM_MODEL, LLM_PROVIDER, OLLAMA_URL
 

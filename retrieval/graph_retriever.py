@@ -1,5 +1,5 @@
 # retrieval/graph_retriever.py
-# Owner: Oussema
+# Owner: Aya
 
 from graph.queries import query_entity_chunks, query_related_entities
 

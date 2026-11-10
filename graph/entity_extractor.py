@@ -1,5 +1,5 @@
 # graph/entity_extractor.py
-# Owner: Oussema
+# Owner: Aya
 #
 # Input:  one chunk dict {chunk_id, text, framework, concept, component, version, url, ...}
 # Output: list[{name, type, chunk_id}]   (type is a key of graph.schema.NODE_LABELS)

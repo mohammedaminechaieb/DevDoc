@@ -27,9 +27,9 @@ FastAPI (api/) --> agents.orchestrator.run_copilot()
 ```
 full_corpus/full_corpus_clean.jsonl   (built by scripts/fetch_full_docs_v3.py)
     |
-    +--[Oussema]--> graph/  entity + relation extraction --> Neo4j
+    +--[Aya]--> graph/  entity + relation extraction --> Neo4j
     |
-    +--[Ghassen]--> retrieval/faiss_indexer --> data/faiss.index + data/faiss_meta.jsonl
+    +--[Mariem]--> retrieval/faiss_indexer --> data/faiss.index + data/faiss_meta.jsonl
 ```
 
 ## Corpus
@@ -46,10 +46,10 @@ ALTERNATIVE_TO, MENTIONED_IN (each with its source chunk_id / url).
 ## Ownership
 | Person  | Area | Branch |
 |---------|------|--------|
-| Oussema | graph/, retrieval/graph_retriever.py | feat/graph |
-| Ghassen | retrieval/ (vector + hybrid), generation/reranker.py, agents/knowledge_retriever.py | feat/retrieval |
-| Mariem  | generation/, agents/responder.py, agents/architecture_advisor.py, agents/code_assistant.py | feat/generation |
+| Aya | graph/, retrieval/graph_retriever.py | feat/graph |
+| Mariem | retrieval/ (vector + hybrid), generation/reranker.py, agents/knowledge_retriever.py | feat/retrieval |
+| Ghassen  | generation/, agents/responder.py, agents/architecture_advisor.py, agents/code_assistant.py | feat/generation |
 | Amine   | api/, config/, agents/orchestrator.py, agents/state.py, agents/intent_analyzer.py, Docker | feat/api |
-| Aya     | frontend/, api/routes/health.py, agents/evaluation_assistant.py, tests/eval/, tests/integration/ | feat/frontend |
+| Oussema     | frontend/, api/routes/health.py, agents/evaluation_assistant.py, tests/eval/, tests/integration/ | feat/frontend |
 
 Full file list: see the root [README](../README.md#team-and-ownership).

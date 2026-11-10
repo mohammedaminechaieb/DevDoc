@@ -1,5 +1,5 @@
 # generation/answer_generator.py
-# Owner: Mariem
+# Owner: Ghassen
 
 from generation.reranker import rerank
 from generation.prompt_builder import build_prompt

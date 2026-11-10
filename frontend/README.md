@@ -1,6 +1,6 @@
 # frontend/ - React UI
-Owner: Aya | Branch: feat/frontend
-Aya also owns: api/routes/health.py, agents/evaluation_assistant.py,
+Owner: Oussema | Branch: feat/frontend
+Oussema also owns: api/routes/health.py, agents/evaluation_assistant.py,
 tests/eval/, tests/integration/, notebooks/04_evaluation.ipynb
 
 ## Features

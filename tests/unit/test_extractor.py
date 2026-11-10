@@ -1,5 +1,5 @@
 # tests/unit/test_extractor.py
-# Owner: Oussema
+# Owner: Aya
 from graph.entity_extractor import extract_entities
 
 CHUNK = {

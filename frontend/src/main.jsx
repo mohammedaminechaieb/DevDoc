@@ -1,5 +1,5 @@
 // frontend/src/main.jsx
-// Owner: Aya
+// Owner: Oussema
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App'

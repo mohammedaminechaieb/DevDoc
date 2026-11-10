@@ -1,5 +1,5 @@
 # graph/queries.py
-# Owner: Oussema
+# Owner: Aya
 #
 # Cypher helpers used by retrieval/graph_retriever.py and agents/knowledge_retriever.py
 

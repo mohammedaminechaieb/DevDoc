@@ -1,5 +1,5 @@
 // frontend/src/components/AnswerCard.jsx
-// Owner: Aya
+// Owner: Oussema
 import React from 'react'
 
 export default function AnswerCard({ answer }) {

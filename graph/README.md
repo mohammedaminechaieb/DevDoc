@@ -1,6 +1,6 @@
 # graph/ - Knowledge Graph
-Owner: Oussema | Branch: feat/graph
-Oussema also owns: retrieval/graph_retriever.py
+Owner: Aya | Branch: feat/graph
+Aya also owns: retrieval/graph_retriever.py
 
 ## Schema (NLP.pdf section 5) - see schema.py
 - Nodes: Concept, Framework, Component, Technology, Technique, Chunk

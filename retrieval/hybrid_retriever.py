@@ -1,5 +1,5 @@
 # retrieval/hybrid_retriever.py
-# Owner: Ghassen
+# Owner: Mariem
 #
 # Merges FAISS and Neo4j results, deduplicates by chunk_id.
 

@@ -14,11 +14,11 @@ START -> intent_analyzer -> knowledge_retriever -> route by intent -> specialist
 | orchestrator.py | builds the StateGraph, `run_copilot()` | - | Amine |
 | state.py | `CopilotState`, `INTENTS` | - | Amine |
 | intent_analyzer.py | Intent Analyzer | sets `intent`, `entities` | Amine |
-| knowledge_retriever.py | Knowledge Retrieval (FAISS + Neo4j) | all | Ghassen |
-| responder.py | grounded RAG answer (generation/) | learn, explore | Mariem |
-| architecture_advisor.py | Architecture Advisor | recommend, design | Mariem |
-| code_assistant.py | Code Assistant | code | Mariem |
-| evaluation_assistant.py | Evaluation Assistant (`run` + `review`) | evaluate (+ reviews all) | Aya |
+| knowledge_retriever.py | Knowledge Retrieval (FAISS + Neo4j) | all | Mariem |
+| responder.py | grounded RAG answer (generation/) | learn, explore | Ghassen |
+| architecture_advisor.py | Architecture Advisor | recommend, design | Ghassen |
+| code_assistant.py | Code Assistant | code | Ghassen |
+| evaluation_assistant.py | Evaluation Assistant (`run` + `review`) | evaluate (+ reviews all) | Oussema |
 
 ## Use
 ~~~python

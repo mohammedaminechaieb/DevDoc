@@ -51,14 +51,14 @@ Each person works on their own branch and merges into `main` through a pull requ
 
 | Person | Area | Branch | Files |
 |---|---|---|---|
-| Oussema | Knowledge graph (Neo4j) | feat/graph | `graph/*`, `retrieval/graph_retriever.py`, `tests/unit/test_extractor.py`, `notebooks/01_graph_exploration.ipynb` |
-| Ghassen | Vector + hybrid retrieval | feat/retrieval | `retrieval/embedder.py`, `retrieval/faiss_indexer.py`, `retrieval/faiss_retriever.py`, `retrieval/hybrid_retriever.py`, `generation/reranker.py`, `agents/knowledge_retriever.py`, `tests/unit/test_retriever.py`, `notebooks/02_retrieval_experiments.ipynb` |
-| Mariem | Generation + specialist agents | feat/generation | `generation/prompt_builder.py`, `generation/llm_client.py`, `generation/answer_generator.py`, `agents/responder.py`, `agents/architecture_advisor.py`, `agents/code_assistant.py`, `tests/unit/test_generator.py`, `notebooks/03_generation_tests.ipynb` |
+| Aya | Knowledge graph (Neo4j) | feat/graph | `graph/*`, `retrieval/graph_retriever.py`, `tests/unit/test_extractor.py`, `notebooks/01_graph_exploration.ipynb` |
+| Mariem | Vector + hybrid retrieval | feat/retrieval | `retrieval/embedder.py`, `retrieval/faiss_indexer.py`, `retrieval/faiss_retriever.py`, `retrieval/hybrid_retriever.py`, `generation/reranker.py`, `agents/knowledge_retriever.py`, `tests/unit/test_retriever.py`, `notebooks/02_retrieval_experiments.ipynb` |
+| Ghassen | Generation + specialist agents | feat/generation | `generation/prompt_builder.py`, `generation/llm_client.py`, `generation/answer_generator.py`, `agents/responder.py`, `agents/architecture_advisor.py`, `agents/code_assistant.py`, `tests/unit/test_generator.py`, `notebooks/03_generation_tests.ipynb` |
 | Amine | Orchestration + API | feat/api | `agents/orchestrator.py`, `agents/state.py`, `agents/intent_analyzer.py`, `api/*` (except `routes/health.py`), `config/`, `Dockerfile`, `docker-compose.yml`, `tests/unit/test_agents.py`, `tests/unit/test_api.py` |
-| Aya | Frontend + evaluation | feat/frontend | `frontend/*`, `api/routes/health.py`, `agents/evaluation_assistant.py`, `tests/eval/*`, `tests/integration/test_pipeline.py`, `notebooks/04_evaluation.ipynb` |
+| Oussema | Frontend + evaluation | feat/frontend | `frontend/*`, `api/routes/health.py`, `agents/evaluation_assistant.py`, `tests/eval/*`, `tests/integration/test_pipeline.py`, `notebooks/04_evaluation.ipynb` |
 
-Agent roles of NLP.pdf: Intent Analyzer + orchestrator -> Amine, Knowledge Retrieval -> Ghassen,
-Architecture Advisor + Code Assistant -> Mariem, Evaluation Assistant -> Aya.
+Agent roles of NLP.pdf: Intent Analyzer + orchestrator -> Amine, Knowledge Retrieval -> Mariem,
+Architecture Advisor + Code Assistant -> Ghassen, Evaluation Assistant -> Oussema.
 
 Shared (change through a PR everyone reviews): `docs/`, `scripts/`, `requirements.txt`, `full_corpus/`, `README.md`.
 ## Quick start

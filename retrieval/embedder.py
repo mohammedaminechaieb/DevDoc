@@ -1,5 +1,5 @@
 # retrieval/embedder.py
-# Owner: Ghassen
+# Owner: Mariem
 
 from config.settings import EMBED_MODEL
 
