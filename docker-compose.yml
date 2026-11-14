@@ -13,7 +13,9 @@ services:
     env_file: config/.env
     environment:
       NEO4J_URI: bolt://neo4j:7687
-    volumes: ["./data:/app/data"]
+    volumes: 
+      - ./data:/app/data
+      - ~/.cache/huggingface:/root/.cache/huggingface
 
 volumes:
   neo4j_data:
