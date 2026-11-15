@@ -1,0 +1,31 @@
+# Job "graph" : extraction du knowledge graph + chargement dans Neo4j, entièrement dans Docker.
+# S'ajoute à docker-compose.yml sans le modifier :
+#
+#   docker compose -f docker-compose.yml -f docker-compose.graph.yml build graph
+#   docker compose -f docker-compose.yml -f docker-compose.graph.yml run --rm graph
+#
+# Variantes :
+#   ... run --rm -e PIPELINE_ARGS="--llm-max-chunks 350" graph        # budget LLM du jour
+#   ... run --rm -e LOADER_ARGS="--reset" graph                       # vide Neo4j avant de charger
+#   ... run --rm graph python -m graph.pipeline --estimate            # une commande précise
+#
+# ./data est monté : les sorties (data/graph, data/cache) restent sur ta machine, et ce qui a déjà
+# été calculé hors Docker (data/graph/raw/*.jsonl) est réutilisé, rien n'est refait.
+services:
+  graph:
+    build:
+      context: .
+      dockerfile: graph/Dockerfile
+    profiles: ["graph"]            # ne démarre pas avec un simple `docker compose up`
+    depends_on: [neo4j]
+    env_file:
+      - path: config/.env          # GROQ_API_KEY, LLM_MODEL... (optionnel : sans clé, le LLM est ignoré)
+        required: false
+    environment:
+      NEO4J_URI: bolt://neo4j:7687
+    volumes:
+      - ./data:/app/data
+      - hf_cache:/hf_cache         # modèle GLiNER téléchargé une seule fois
+
+volumes:
+  hf_cache:
