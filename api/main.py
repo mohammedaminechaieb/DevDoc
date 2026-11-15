@@ -15,10 +15,15 @@ app = FastAPI(
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],
+    allow_origins=["http://localhost:5173", "http://127.0.0.1:5173"],
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
 app.include_router(health.router)
 app.include_router(query.router, prefix="/api")
+
+
+@app.get("/", include_in_schema=False)
+def root():
+    return {"service": "agentic-ai-copilot", "docs": "/docs", "query": "POST /api/query"}

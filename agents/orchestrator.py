@@ -5,6 +5,10 @@
 #   START -> intent_analyzer -> knowledge_retriever -> (route by intent)
 #            -> responder | architecture_advisor | code_assistant | evaluation_assistant
 #            -> reviewer -> END
+#
+# Quick test from the repo root:
+#   python -m agents.orchestrator "What is tool calling?"
+#   python -m agents.orchestrator --mermaid      # prints the graph for the report
 
 from langgraph.graph import END, START, StateGraph
 
@@ -56,14 +60,32 @@ def build_graph():
 _app = None
 
 
-def run_copilot(question: str, top_k: int = TOP_K, use_graph: bool = True,
-                history: list[dict] | None = None) -> CopilotState:
+def get_app():
+    """Compiled graph, built once and reused by the API."""
     global _app
     if _app is None:
         _app = build_graph()
-    return _app.invoke({
+    return _app
+
+
+def run_copilot(question: str, top_k: int = TOP_K, use_graph: bool = True,
+                history: list[dict] | None = None) -> CopilotState:
+    return get_app().invoke({
         "question": question,
         "top_k": top_k,
         "use_graph": use_graph,
         "history": history or [],
     })
+
+
+if __name__ == "__main__":
+    import json
+    import sys
+
+    if "--mermaid" in sys.argv:
+        print(get_app().get_graph().draw_mermaid())
+    else:
+        question = " ".join(a for a in sys.argv[1:]) or "What is LangGraph?"
+        result = run_copilot(question)
+        keys = ("intent", "entities", "answer", "sources", "review")
+        print(json.dumps({k: result.get(k) for k in keys}, indent=2, ensure_ascii=False))

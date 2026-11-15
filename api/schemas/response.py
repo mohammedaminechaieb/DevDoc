@@ -16,9 +16,16 @@ class GraphData(BaseModel):
     edges: list[dict] = []
 
 
+class Review(BaseModel):
+    ok: bool
+    issues: list[str] = []
+
+
 class QueryResponse(BaseModel):
     query: str
     intent: str | None = None     # learn | recommend | design | code | explore | evaluate
+    entities: list[str] = []      # graph entities found in the question
     answer: str
     sources: list[Source]
     graph: GraphData | None = None
+    review: Review | None = None
