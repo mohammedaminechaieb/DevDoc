@@ -1,60 +1,118 @@
 // frontend/src/pages/Home.jsx
 // Owner: Oussema
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
+import Header from '../components/Header'
+import Message from '../components/Message'
 import SearchBar from '../components/SearchBar'
-import AnswerCard from '../components/AnswerCard'
-import SourcesList from '../components/SourcesList'
-import GraphViewer from '../components/GraphViewer'
-import axios from 'axios'
+import Welcome from '../components/Welcome'
+import { askCopilot, buildHistory, checkHealth, errorMessage } from '../lib/api'
+import { MIN_QUESTION } from '../lib/constants'
+import { mockResponse } from '../lib/mock'
 
-// Mock response - used while the backend is not ready
-const MOCK = {
-  query: 'What is LangGraph?',
-  intent: 'learn',
-  answer: 'LangGraph is a library for building stateful, multi-actor applications with LLMs.',
-  sources: [{ chunk_id: 'mock', url: 'https://langchain-ai.github.io/langgraph/', framework: 'langgraph', text: '...' }],
-  graph: { nodes: [], edges: [] }
-}
+const HEALTH_POLL_MS = 20000
+let nextId = 1
+const uid = () => nextId++
 
 export default function Home() {
-  const [result, setResult] = useState(null)
-  const [history, setHistory] = useState([])
+  const [messages, setMessages] = useState([])
+  const [draft, setDraft] = useState('')
   const [loading, setLoading] = useState(false)
-  const [healthy, setHealthy] = useState(null)
+  const [status, setStatus] = useState('checking')      // checking | online | offline
+  const [topK, setTopK] = useState(5)
+  const [useGraph, setUseGraph] = useState(true)
+  const endRef = useRef(null)
 
-  // Poll /health before enabling search (served by api/routes/health.py)
-  React.useEffect(() => {
-    axios.get('/health')
-      .then(() => setHealthy(true))
-      .catch(() => setHealthy(false))
+  // Poll /health (api/routes/health.py) so the header always shows the backend state
+  useEffect(() => {
+    let alive = true
+    const poll = async () => {
+      const ok = await checkHealth()
+      if (alive) setStatus(ok ? 'online' : 'offline')
+    }
+    poll()
+    const timer = setInterval(poll, HEALTH_POLL_MS)
+    return () => { alive = false; clearInterval(timer) }
   }, [])
 
-  async function handleSearch(question) {
-    if (!question.trim()) return
+  useEffect(() => {
+    endRef.current?.scrollIntoView({ behavior: 'smooth', block: 'end' })
+  }, [messages, loading])
+
+  async function handleSend(raw, base = messages) {
+    const question = raw.trim()
+    if (question.length < MIN_QUESTION || loading) return
+
+    const history = buildHistory(base)
+    setMessages(m => [...m, { id: uid(), role: 'user', content: question }])
+    setDraft('')
     setLoading(true)
-    let data
+
+    const started = performance.now()
+    let data = null
+    let demo = false
     try {
-      const res = await axios.post('/api/query', { question, top_k: 5, use_graph: true, history })
-      data = res.data
-    } catch {
-      // Fall back to mock while backend is under development
-      data = { ...MOCK, query: question }
+      if (status === 'offline') {
+        demo = true
+        await new Promise(r => setTimeout(r, 700))
+        data = mockResponse(question)
+      } else {
+        data = await askCopilot({ question, topK, useGraph, history })
+      }
+    } catch (err) {
+      if (!err.response) {                                // no answer at all: backend is down -> demo mode
+        setStatus('offline')
+        demo = true
+        data = mockResponse(question)
+      } else {
+        setMessages(m => [...m, { id: uid(), role: 'error', content: errorMessage(err), question }])
+      }
     }
-    setResult(data)
-    setHistory(h => [...h, { role: 'user', content: question }, { role: 'assistant', content: data.answer }])
+    if (data) {
+      setMessages(m => [...m, { id: uid(), role: 'assistant', data, demo, latency: performance.now() - started }])
+    }
     setLoading(false)
   }
 
+  function handleRetry(question) {
+    // drop the failed exchange (question + error), then ask again
+    const cut = messages.map(x => x.role === 'error' && x.question === question).lastIndexOf(true)
+    const cleaned = cut < 0 ? messages : messages.filter((_, i) => i !== cut && i !== cut - 1)
+    setMessages(cleaned)
+    handleSend(question, cleaned)
+  }
+
   return (
-    <div>
-      <h1>Agentic AI Copilot</h1>
-      {healthy === false && <p style={{ color: 'red' }}>Backend offline - using mock data</p>}
-      <SearchBar onSearch={handleSearch} disabled={loading} />
-      {loading && <p>Thinking...</p>}
-      {result && result.intent && <p><small>Mode: {result.intent}</small></p>}
-      {result && <AnswerCard answer={result.answer} />}
-      {result && <SourcesList sources={result.sources} />}
-      {result && <GraphViewer data={result.graph} />}
+    <div className="app">
+      <Header status={status} onReset={() => setMessages([])} canReset={messages.length > 0 && !loading} />
+
+      <main className="thread">
+        <div className="container">
+          {messages.length === 0 && <Welcome onPick={setDraft} />}
+          {messages.map(m => <Message key={m.id} message={m} onRetry={handleRetry} />)}
+          {loading && (
+            <div className="msg msg--assistant msg--loading" role="status" aria-live="polite">
+              <span className="dots"><i /><i /><i /></span>
+              Searching the documentation and the knowledge graph…
+            </div>
+          )}
+          <div ref={endRef} />
+        </div>
+      </main>
+
+      <footer className="composer">
+        <div className="container">
+          <SearchBar
+            value={draft}
+            onChange={setDraft}
+            onSubmit={handleSend}
+            disabled={loading}
+            topK={topK}
+            onTopK={setTopK}
+            useGraph={useGraph}
+            onUseGraph={setUseGraph}
+          />
+        </div>
+      </footer>
     </div>
   )
 }
