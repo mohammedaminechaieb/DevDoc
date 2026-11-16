@@ -3,6 +3,7 @@
 # Role: Architecture Advisor - features B (framework recommendation) and C (architecture designer).
 
 from agents.state import CopilotState
+from generation.answer_generator import generate_answer
 
 INSTRUCTIONS = (
     "Propose an agentic architecture for the user's need. Give: the architecture type "
@@ -13,5 +14,9 @@ INSTRUCTIONS = (
 
 
 def run(state: CopilotState) -> dict:
-    # TODO: build_prompt(question, chunks, INSTRUCTIONS) -> call_llm -> {answer, sources}
-    raise NotImplementedError
+    result = generate_answer(
+        state["question"],
+        state.get("chunks", []),
+        instructions=INSTRUCTIONS,
+    )
+    return {"answer": result["answer"], "sources": result["sources"]}

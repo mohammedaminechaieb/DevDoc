@@ -32,8 +32,9 @@ def _format_sources(chunks: list[dict]) -> list[dict]:
     ]
 
 
-def generate_answer(query: str, chunks: list[dict]) -> dict:
+def generate_answer(query: str, chunks: list[dict], instructions: str | None = None) -> dict:
     """rerank -> build_prompt -> call_llm.
+    `instructions` carries the agent-specific guidance (architecture advisor, code assistant...).
     Returns: {answer, sources: [{chunk_id, url, framework, text}], query}
     """
     # Nothing retrieved: no need to call the LLM
@@ -41,7 +42,7 @@ def generate_answer(query: str, chunks: list[dict]) -> dict:
         return {"answer": NO_CONTEXT_ANSWER, "sources": [], "query": query}
 
     ranked = _safe_rerank(query, chunks)
-    prompt = build_prompt(query, ranked)
+    prompt = build_prompt(query, ranked, instructions)
     answer = call_llm(prompt, system=SYSTEM_PROMPT)
 
     return {"answer": answer, "sources": _format_sources(ranked), "query": query}
