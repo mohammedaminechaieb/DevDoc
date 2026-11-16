@@ -1,37 +1,59 @@
 # graph/entity_extractor.py
 # Owner: Aya
 #
-# Input:  one chunk dict {chunk_id, text, framework, concept, component, version, url, ...}
-# Output: list[{name, type, chunk_id}]   (type is a key of graph.schema.NODE_LABELS)
+# Extracteur d'ENTITÉS par dictionnaire (vocabulaire : graph/vocabulary.py).
+# Rapide, gratuit, déterministe : c'est la base de comparaison des autres extracteurs.
+# Input : chunk dict {chunk_id, text, framework, ...}
+# Output: list[Entity]  (voir graph/extractors/base.py)
 
-from graph.schema import NODE_LABELS
+import re
 
-# Surface form -> canonical entity name (extend while reading the corpus)
-ALIASES = {
-    "tool use": "Tool Calling",
-    "tool calling": "Tool Calling",
-    "function calling": "Function Calling",
-    "multi-agent": "Multi-Agent System",
-    "multi agent": "Multi-Agent System",
-    "model context protocol": "MCP",
-    "vector store": "Vector Database",
-    "human in the loop": "Human-in-the-loop",
-}
+from graph import vocabulary as V
+from graph.extractors.base import make_entity
 
-_nlp = None
+# marqueurs de nettoyage laissés dans le corpus
+_NOISE = re.compile(r"\b(?:CODE_?BLOCK|INLINE_?CODE)\b")
 
 
-def get_nlp():
-    """spaCy is loaded lazily so importing this module stays fast."""
-    global _nlp
-    if _nlp is None:
-        import spacy
-        _nlp = spacy.load("en_core_web_sm")
-    return _nlp
+def clean_text(text: str) -> str:
+    return _NOISE.sub(" ", text or "")
+
+
+def _build_patterns():
+    forms = {name: {name} for name in V.ENTITIES}
+    for surface, canon in V.ALIASES.items():
+        if canon in forms:
+            forms[canon].add(surface)
+    patterns = []
+    for canon, surfaces in forms.items():
+        alts = "|".join(re.escape(s) for s in sorted(surfaces, key=len, reverse=True))
+        flags = 0 if canon in V.CASE_SENSITIVE else re.IGNORECASE
+        # mots entiers, pluriel simple accepté, "Node.js" exclu
+        rx = re.compile(rf"(?<![A-Za-z0-9])(?:{alts})(?:s|es)?(?![A-Za-z0-9]|\.js)", flags)
+        patterns.append((canon, V.ENTITIES[canon], rx))
+    return patterns
+
+
+_PATTERNS = _build_patterns()
+
+
+def find_mentions(text: str) -> list[dict]:
+    """Toutes les occurrences avec position : [{name, type, start, end}] (sert aux relations)."""
+    out = [{"name": n, "type": t, "start": m.start(), "end": m.end()}
+           for n, t, rx in _PATTERNS for m in rx.finditer(text)]
+    return sorted(out, key=lambda m: m["start"])
 
 
 def extract_entities(chunk: dict) -> list[dict]:
-    # TODO: 1) case-insensitive whole-word match of NODE_LABELS names + ALIASES in chunk["text"]
-    #       2) optional: spaCy noun chunks / NER to propose new candidates
-    #       3) deduplicate by (name, type)
-    raise NotImplementedError
+    text = clean_text(chunk.get("text", ""))
+    found = {}
+    for name, etype, rx in _PATTERNS:
+        n = len(rx.findall(text))
+        if n:
+            found[(name, etype)] = n
+    # le framework du chunk (métadonnée) est toujours une entité du chunk
+    meta = V.FRAMEWORK_META.get(chunk.get("framework", ""))
+    if meta:
+        found.setdefault(meta, 0)
+    return [make_entity(n, t, chunk, "dictionary", confidence=1.0, count=c)
+            for (n, t), c in sorted(found.items(), key=lambda kv: -kv[1])]

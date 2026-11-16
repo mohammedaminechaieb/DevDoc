@@ -1,0 +1,16 @@
+# Extraction multi-méthodes (graph/extractors). Séparé de requirements.txt (propriété d'Amine) :
+# à fusionner dans le requirements commun si l'équipe valide l'approche.
+gliner>=0.2      # GLiNER (entités) et GLiNER-Relex (entités + relations) : pip install gliner -U
+pydantic>=2      # validation de la sortie JSON du LLM
+groq             # LLM par défaut (config/settings.py) ; remplaçable par n'importe quel complete(prompt)->str
+httpx            # LLM_PROVIDER=ollama
+rapidfuzz        # résolution d'entités (quasi-doublons) ; repli difflib si absent
+jsonlines
+tqdm
+torch
+protobuf
+tiktoken
+python-dotenv
+neo4j
+pydantic
+sentencepiece
