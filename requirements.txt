@@ -5,15 +5,18 @@ jsonlines
 tqdm
 numpy
 
-# Retrieval
+# Retrieval (Mariem)
 faiss-cpu
 sentence-transformers
+FlagEmbedding          # cross-encoder reranker (generation/reranker.py)
 
-# Knowledge graph
+# Knowledge graph (Aya) - extraction extras in graph/requirements-extraction.txt
 neo4j
 spacy
+rapidfuzz
 
-# LLM + agents
+# LLM + agents  (provider chosen by LLM_PROVIDER in config/.env)
+google-genai
 groq
 httpx
 langgraph

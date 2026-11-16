@@ -3,6 +3,7 @@
 # Role: Code Assistant - feature D (code examples, project structure, debugging).
 
 from agents.state import CopilotState
+from generation.answer_generator import generate_answer
 
 INSTRUCTIONS = (
     "Help the user implement their agentic system: give runnable code examples for the "
@@ -12,5 +13,9 @@ INSTRUCTIONS = (
 
 
 def run(state: CopilotState) -> dict:
-    # TODO: build_prompt(question, chunks, INSTRUCTIONS) -> call_llm -> {answer, sources}
-    raise NotImplementedError
+    result = generate_answer(
+        state["question"],
+        state.get("chunks", []),
+        instructions=INSTRUCTIONS,
+    )
+    return {"answer": result["answer"], "sources": result["sources"]}

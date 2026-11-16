@@ -46,7 +46,7 @@ def test_intent_uses_llm_json_when_available(monkeypatch):
                         lambda prompt, system=None: 'Sure: {"intent": "design", "entities": ["CrewAI"]}')
     out = intent_analyzer.run({"question": "I want three agents that write a report"})
     assert out["intent"] == "design"
-    assert out["entities"] == ["CrewAI"]
+    assert "CrewAI" in out["entities"]          # + "Agent" found by the vocabulary matcher
 
 
 def test_intent_rejects_unknown_llm_intent(monkeypatch):

@@ -29,11 +29,17 @@ NEO4J_URI  = os.getenv("NEO4J_URI",  "bolt://localhost:7687")
 NEO4J_USER = os.getenv("NEO4J_USER", "neo4j")
 NEO4J_PASS = os.getenv("NEO4J_PASS", "password")
 
-# LLM
-LLM_PROVIDER = os.getenv("LLM_PROVIDER", "groq")  # groq | ollama
-LLM_MODEL    = os.getenv("LLM_MODEL",    "llama-3.1-8b-instant")
-GROQ_API_KEY = os.getenv("GROQ_API_KEY", "")
-OLLAMA_URL   = os.getenv("OLLAMA_URL",   "http://localhost:11434")
+# LLM  (gemini first; groq as fallback; ollama for local/offline runs)
+LLM_PROVIDER = os.getenv("LLM_PROVIDER", "gemini")  # gemini | groq | ollama
+_DEFAULT_MODEL = {
+    "gemini": "gemini-2.5-flash",
+    "groq":   "llama-3.1-8b-instant",
+    "ollama": "mistral:7b",
+}
+LLM_MODEL      = os.getenv("LLM_MODEL", _DEFAULT_MODEL.get(LLM_PROVIDER, ""))
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "")
+GROQ_API_KEY   = os.getenv("GROQ_API_KEY", "")
+OLLAMA_URL     = os.getenv("OLLAMA_URL", "http://localhost:11434")
 
 # Retrieval
 TOP_K = int(os.getenv("TOP_K", "5"))
