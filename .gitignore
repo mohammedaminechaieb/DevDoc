@@ -30,3 +30,12 @@ frontend/dist/
 # OS
 .DS_Store
 Thumbs.db
+
+# IDE
+.idea/
+.vscode/
+
+# Local indexes / artefacts (never commit)
+retrieval/vector_store/
+*.pkl
+*.sqlite3

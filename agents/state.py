@@ -21,6 +21,7 @@ class CopilotState(TypedDict, total=False):
     history: list[dict]       # previous turns: [{role, content}]
     top_k: int
     use_graph: bool
+    use_reranker: bool        # cross-encoder rerank of the retrieved chunks (Mariem)
     # intent_analyzer
     intent: str               # one of INTENTS
     entities: list[str]       # concepts / frameworks named in the question

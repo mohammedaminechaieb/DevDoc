@@ -13,7 +13,7 @@ NO_CONTEXT_ANSWER = (
 def _safe_rerank(query: str, chunks: list[dict]) -> list[dict]:
     """Use Mariem's reranker; fall back to the retriever score while it is not implemented."""
     try:
-        return rerank(query, chunks)
+        return rerank(query, chunks, top_k=len(chunks))
     except NotImplementedError:
         # TEMPORARY: remove once generation/reranker.py is merged
         return sorted(chunks, key=lambda c: c.get("score", 0), reverse=True)

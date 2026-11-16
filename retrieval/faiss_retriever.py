@@ -2,6 +2,8 @@
 # Owner: Mariem
 
 import json
+import os
+
 import faiss
 from config.settings import FAISS_INDEX, FAISS_META
 from retrieval.embedder import BGEM3Embedder
@@ -15,6 +17,9 @@ def _load_resources():
     """Lazy-loads the heavy assets only when the first query is run."""
     global _index, _metadata, _embedder
     if _index is None:
+        for path in (FAISS_INDEX, FAISS_META):
+            if not os.path.exists(path):
+                raise FileNotFoundError(2, "Index not built: run python -m retrieval.faiss_indexer", path)
         print("Loading FAISS Index into memory...")
         _index = faiss.read_index(FAISS_INDEX)
         
@@ -30,7 +35,7 @@ def search_faiss(query: str, k: int = 5) -> list[dict]:
     _load_resources()
     
     # 1. Embed the incoming query (we only need the dense vector for FAISS)
-    dense_vecs, _ = _embedder.embed_corpus([query])
+    dense_vecs = _embedder.embed_corpus([query])
     
     # 2. Perform the vector search
     distances, indices = _index.search(dense_vecs, k)

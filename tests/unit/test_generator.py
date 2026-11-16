@@ -1,6 +1,17 @@
 # tests/unit/test_generator.py
 # Owner: Ghassen
+import pytest
+
+from generation import answer_generator
 from generation.answer_generator import generate_answer
+
+
+@pytest.fixture(autouse=True)
+def fake_llm(monkeypatch):
+    """No network in unit tests: the LLM echoes a grounded answer."""
+    monkeypatch.setattr(answer_generator, "call_llm", lambda prompt, system=None: "LangGraph builds stateful agents [1].")
+    monkeypatch.setattr(answer_generator, "rerank", lambda q, chunks, **kw: chunks)
+
 
 CHUNKS = [{
     "chunk_id": "lg_001",

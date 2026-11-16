@@ -24,6 +24,9 @@ def query_endpoint(body: QueryRequest):
         )
     except NotImplementedError as e:
         raise HTTPException(status_code=501, detail=f"Pipeline not implemented yet: {e}")
+    except FileNotFoundError as e:
+        raise HTTPException(status_code=503, detail=f"Index not built yet ({e.filename}): "
+                            "run python -m retrieval.faiss_indexer")
     except Exception as e:
         log.exception("query failed")
         raise HTTPException(status_code=500, detail=f"{type(e).__name__}: {e}")

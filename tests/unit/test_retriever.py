@@ -3,11 +3,14 @@
 # Unit tests for FAISS retrieval, RRF hybrid merge, cross-encoder reranking,
 # and the knowledge_retriever LangGraph node.
 
+import os
 import sys
 import types
 from unittest.mock import MagicMock, patch
 
 import pytest
+
+from config.settings import FAISS_INDEX
 
 from retrieval.hybrid_retriever import retrieve, rrf_merge
 from generation.reranker import rerank
@@ -19,10 +22,12 @@ from agents import knowledge_retriever
 # ---------------------------------------------------------------------------
 
 
+@pytest.mark.skipif(not os.path.exists(FAISS_INDEX), reason="FAISS index not built: python -m retrieval.faiss_indexer")
 def test_returns_list():
     assert isinstance(retrieve("What is LangGraph?", k=3), list)
 
 
+@pytest.mark.skipif(not os.path.exists(FAISS_INDEX), reason="FAISS index not built: python -m retrieval.faiss_indexer")
 def test_has_required_keys():
     result = retrieve("What is LangGraph?", k=1)
     if result:
