@@ -1,37 +1,60 @@
 # retrieval/hybrid_retriever.py
-# Owner: Mariem
+import logging
+from typing import Any
 
 from retrieval.faiss_retriever import search_faiss
-# from retrieval.graph_retriever import search_graph  # TODO: Uncomment when Aya finishes
 
-def retrieve(query: str, k: int = 5, use_graph: bool = True) -> list[dict]:
+logger = logging.getLogger(__name__)
+
+
+def rrf_merge(
+    ranked_lists: list[list[dict[str, Any]]],
+    k_rrf: int = 60,
+    top_k: int = 10,
+) -> list[dict[str, Any]]:
     """
-    Main entry point for the orchestrator. 
-    Currently mocks graph retrieval until Neo4j is ready.
+    Deduplicate chunks by 'chunk_id' and fuse multiple ranked lists using
+    Reciprocal Rank Fusion: score = sum(1 / (k_rrf + rank)).
     """
-    print(f"\n--- Hybrid Retrieval Triggered ---")
-    print(f"Query: '{query}'")
-    
-    # 1. Always execute Vector Search
-    print("Executing Vector Search...")
-    vector_results = search_faiss(query, k=k)
-    
-    # 2. Execute Graph Search (Mocked for now)
-    graph_results = []
+    fused_scores: dict[str, float] = {}
+    chunk_store: dict[str, dict[str, Any]] = {}
+
+    for result_list in ranked_lists:
+        for rank, chunk in enumerate(result_list, start=1):
+            cid = str(chunk.get("chunk_id") or hash(chunk.get("text", "")))
+            fused_scores[cid] = fused_scores.get(cid, 0.0) + (1.0 / (k_rrf + rank))
+            if cid not in chunk_store:
+                chunk_store[cid] = dict(chunk)
+
+    merged: list[dict[str, Any]] = []
+    for cid, rrf_score in sorted(fused_scores.items(), key=lambda x: x[1], reverse=True):
+        entry = chunk_store[cid]
+        entry["rrf_score"] = rrf_score
+        entry["score"] = rrf_score
+        merged.append(entry)
+
+    return merged[:top_k]
+
+
+def retrieve(
+    query: str,
+    k: int = 10,
+    use_graph: bool = True,
+) -> list[dict[str, Any]]:
+    """Retrieve candidate chunks from FAISS and optionally fuse with Neo4j graph search."""
+    vector_chunks = search_faiss(query, k=k)
+    ranked_lists = [vector_chunks]
+
     if use_graph:
-        print("Warning: Graph retrieval is mocked. Returning empty graph list.")
-        # graph_results = search_graph(query) 
-        pass
-        
-    # 3. Merge and Deduplicate (Will matter when graph is active)
-    seen_ids = set()
-    final_chunks = []
-    
-    for chunk in vector_results + graph_results:
-        chunk_id = chunk["chunk_id"]
-        if chunk_id not in seen_ids:
-            seen_ids.add(chunk_id)
-            final_chunks.append(chunk)
-            
-    # Return the top K combined results
-    return final_chunks[:k]
+        try:
+            from retrieval.graph_retriever import retrieve_graph  # type: ignore
+
+            graph_chunks = retrieve_graph(query, k=k)
+            if graph_chunks:
+                ranked_lists.append(graph_chunks)
+        except ImportError:
+            logger.debug("graph_retriever.retrieve_graph not available yet; using FAISS only.")
+        except Exception as exc:
+            logger.warning("Graph retrieval failed (%s); falling back to FAISS only.", exc)
+
+    return rrf_merge(ranked_lists, top_k=k)
