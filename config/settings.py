@@ -32,8 +32,8 @@ NEO4J_PASS = os.getenv("NEO4J_PASS", "password")
 # LLM  (gemini first; groq as fallback; ollama for local/offline runs)
 LLM_PROVIDER = os.getenv("LLM_PROVIDER", "groq")  # gemini | groq | ollama
 _DEFAULT_MODEL = {
-    "gemini": "gemini-2.5-flash",
-    "groq":   "llama-3.1-8b-instant",
+    "gemini": "gemini-3.8-flash",
+    "groq":   "openai/gpt-oss-20b",
     "ollama": "mistral:7b",
 }
 LLM_MODEL      = os.getenv("LLM_MODEL", _DEFAULT_MODEL.get(LLM_PROVIDER, ""))
