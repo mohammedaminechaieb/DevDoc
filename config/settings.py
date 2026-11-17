@@ -30,7 +30,7 @@ NEO4J_USER = os.getenv("NEO4J_USER", "neo4j")
 NEO4J_PASS = os.getenv("NEO4J_PASS", "password")
 
 # LLM  (gemini first; groq as fallback; ollama for local/offline runs)
-LLM_PROVIDER = os.getenv("LLM_PROVIDER", "gemini")  # gemini | groq | ollama
+LLM_PROVIDER = os.getenv("LLM_PROVIDER", "groq")  # gemini | groq | ollama
 _DEFAULT_MODEL = {
     "gemini": "gemini-2.5-flash",
     "groq":   "llama-3.1-8b-instant",
