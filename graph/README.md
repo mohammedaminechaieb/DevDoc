@@ -50,7 +50,7 @@ An unavailable extractor (package or API key missing) is skipped with a warning 
 `data/graph/raw/<extractor>.jsonl` and LLM answers cached in `data/cache/`: an interrupted run
 (quota, Ctrl+C) resumes where it stopped.
 
-LLM settings (config/.env): `LLM_PROVIDER` (groq | ollama), `GRAPH_LLM_MODEL` (extraction model,
+LLM settings (config/.env): `LLM_PROVIDER` (gemini | groq | ollama), `GRAPH_LLM_MODEL` (extraction model,
 defaults to `LLM_MODEL`), `LLM_RPM` (requests/minute, default 25).
 
 ## Outputs (data/graph/)

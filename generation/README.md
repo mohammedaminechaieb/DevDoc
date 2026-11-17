@@ -6,7 +6,7 @@ Ghassen also owns: agents/responder.py, agents/architecture_advisor.py, agents/c
 ## Pipeline
 1. reranker.py (Mariem) - re-score chunks
 2. prompt_builder.py - format context + agent instructions + question
-3. llm_client.py - Groq / Ollama
+3. llm_client.py - Gemini / Groq / Ollama (`LLM_PROVIDER` in config/.env)
 4. answer_generator.py - orchestrates all three
 
 `build_prompt` and `call_llm` are also used by the agents in `agents/`

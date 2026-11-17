@@ -24,7 +24,7 @@ Project specification: [`NLP.pdf`](NLP.pdf).
 |---|---|
 | Language | Python 3.10+ |
 | Agent orchestration | LangGraph |
-| LLM | Groq API or Ollama |
+| LLM | Gemini (default), Groq or Ollama - one `call_llm()` entry point |
 | Embeddings | Sentence Transformers |
 | Vector search | FAISS |
 | Knowledge graph | Neo4j |
